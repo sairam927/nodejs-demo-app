@@ -4,6 +4,10 @@ on:
   push:
     branches: ["main"]
 
+permissions:
+  contents: read
+  packages: write
+
 jobs:
   build-and-push:
     runs-on: ubuntu-latest
@@ -34,12 +38,8 @@ jobs:
           username: ${{ github.actor }}
           password: ${{ secrets.GITHUB_TOKEN }}
 
-      - name: Retry Docker Build (up to 3 times)
-        run: |
-          for i in 1 2 3; do
-            docker build -t ghcr.io/${{ github.repository_owner }}/nodejs-demo-app:latest . && break || \
-            (echo "Build failed, retrying in 20s..." && sleep 20)
-          done
+      - name: Build Docker Image
+        run: docker build -t ghcr.io/${{ github.repository_owner }}/nodejs-demo-app:latest .
 
       - name: Push Docker Image to GHCR
         run: docker push ghcr.io/${{ github.repository_owner }}/nodejs-demo-app:latest
