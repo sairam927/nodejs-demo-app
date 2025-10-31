@@ -9,7 +9,7 @@ what is GitHub events?
 A GitHub event is something that happens in your GitHub repository that can trigger a workflow in GitHub Actions.
 A GitHub event is an action or activity (like pushing code, creating a pull request, or opening an issue) that tells GitHub Actions “Start running the workflow now!”
 
-ci/cd with GitHub actions
+ci/cd with GitHub actions:
 =========================
 what is ci/cd?
 CI (Continuous Integration) → Automatically build and test your code whenever you make changes (like pushing to GitHub).
